@@ -1,0 +1,172 @@
+<!-- form-profile.html -->
+<form name="my_form">
+    <div ng-if="!uniqueEmail">
+
+        <div class="form-group">
+            <label for="email" class="label-color">Email</label>
+            <input type="email" class="form-control form-cust" id="email" name="email" ng-model="formData.contact_email" placeholder="enter your email" ng-required="true" ng-readonly="false">
+
+        </div>
+        <span class="help-block" ng-show="my_form.email.$dirty && my_form.email.$invalid">
+          <span style="color:red;">
+              Please Ensure right email 
+          </span> 
+      </span>
+
+      <div class="form-group row" style="padding:6px";>
+        <div class="col-xs-6 col-xs-offset-3">
+            <button  ng-click="checkEmail()"   ng-disabled="my_form.email.$invalid" class="btn btn-block btn-info" style="background-color:rebeccapurple">
+                continue <span class="glyphicon glyphicon-circle-arrow-right"></span>
+            </button>
+
+        </div>
+    </div>
+
+</div>
+<div ng-if="uniqueEmail">
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="form-group">
+                <label for="name" class="label-color">Contact Name</label>
+                <input type="text" class="form-control form-cust" id="contact_name" name="contact_name" ng-model="formData.contact_name" ng-readonly="disableForm" ng-required="true">
+            </div>
+            <span  ng-show="my_form.contact_name.$dirty && my_form.contact_name.$invalid">
+
+              <span  style="color:red" ng-show="my_form.contact_name.$error.required" class="help-block">name is required.</span>
+          </span>
+      </div>
+
+
+      <div class="col-sm-6">
+        <div class="form-group">
+            <label for="mobile" class="label-color" >Contact Number</label>
+            <input type="number" class="form-control form-cust" id="phone" name="contact_number" ng-model="formData.contact_number"  ng-readonly="disableForm" ng-maxlength="10" ng-minlength="10" ng-required="true">
+        </div>
+        <span  ng-show="my_form.contact_number.$dirty && my_form.contact_number.$invalid">
+
+          <span  style="color:red" ng-show="users.contact_number.$error.required || my_form.contact_number.$error.number" class="help-block">valid Mobile NO. is required.</span>
+      </span>
+      <span class="help-block" style="color:red" ng-show="((my_form.contact_number.$error.minlength || my_form.contact_number.$error.maxlength) && my_form.contact_number.$dirty)">phone number should be 10 digits</span>
+
+  </div>
+
+</div>
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+    <label for="center" class="label-color">Center</label><input type="text" class="form-control form-cust" id="center" name="center" ng-model="formData.center" ng-readonly="disableForm" ng-required="true"/>
+
+        </div>
+        <span class="help-block" ng-show="my_form.center.$dirty && my_form.center.$invalid">
+          <span style="color:red;">
+              Please Ensure right email 
+          </span> 
+      </span>
+  </div>
+  <div class="col-sm-6">
+    <div class="form-group">
+        <label for="state" class="label-color">State</label>
+        <input type="text" class="form-control form-cust" id="state" name="state" ng-model="formData.state"  ng-readonly="disableForm" ng-required="true">
+    </div>
+    <span  ng-show="my_form.state.$dirty && my_form.state.$invalid">
+
+      <span  style="color:red" ng-show="my_form.state.$error.required" class="help-block">name is required.
+      </span>
+  </span>
+</div>
+</div>
+
+<div class="row">
+    <div class="form-group col-sm-6" ng-show="!disableForm">
+        <label for="name" class="label-color">Country</label>
+        <select class="select-input dropdown form-cust form-control" name="country"  ng-model="formData.country"  ng-readonly="disableForm==true" >
+            <option ng-repeat="country in country1">{{country.name}}</option>
+        </select>
+    </div>
+    <div class="form-group col-sm-6" ng-show="disableForm">
+        <label for="email" class="label-color">Country</label>
+        <input type="text" class="form-control form-cust" name="country" ng-model="formData.country"  ng-readonly="{{disableForm}}">
+    </div>
+    <div class="form-group col-sm-6">
+        <label for="email" class="label-color">Email</label>
+        <input type="text" class="form-control form-cust" name="email" ng-model="formData.contact_email"  ng-readonly="true">
+    </div>
+</div>
+<div class="form-group">
+    <label for="address" class="label-color">Address</label>
+    <input type="text" class="form-control form-cust"  name="address" ng-model="formData.address" ng-readonly="disableForm" ng-required="true">
+    <span class="help-block" ng-show="my_form.address.$dirty && my_form.address.$invalid">
+      <span style="color:red;">
+          please ensure Right address 
+      </span> 
+  </span>
+</div>
+<div ng-show="formData.payment_mode!='' && Datalength>0">
+    <hr><h4 style="text-align:center;color: orange">Payment Information</h4></hr>
+
+    <div class="row">
+        <div class="form-group col-sm-6">
+            <label for="name" class="label-color">Amount</label>
+            <input type="text" class="form-control form-cust" name="center" ng-model="formData.amount"  ng-readonly="true">
+        </div>
+        <div class="form-group col-sm-6">
+            <label for="name" class="label-color">Payment Mode</label>
+            <input type="text" class="form-control form-cust" name="state" ng-model="formData.payment_mode"  ng-readonly="true">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-6" ng-show="formData.payment_confirmed==1">
+            <label for="name" class="label-color">Payment Confirmation</label>
+            <input type="text" class="form-control form-cust" name="center" value="Confirm"  ng-readonly="true">
+        </div>
+        <div class="form-group col-sm-6" ng-show="formData.payment_confirmed==0">
+            <label for="name" class="label-color">Payment Confirmation</label>
+            <input type="text" class="form-control form-cust" name="center" value="Not Confirm"  ng-readonly="true">
+        </div>
+        <div class="form-group col-sm-6">
+            <label for="name" class="label-color">Transaction Ref</label>
+            <input type="text" class="form-control form-cust" name="state" ng-model="formData.transaction_ref"  ng-readonly="true">
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-sm-6">
+            <label for="name" class="label-color">Bank Name</label>
+            <input type="text" class="form-control form-cust" name="address" ng-model="formData.bank_name"  ng-readonly="true">
+        </div>
+        <div class="form-group col-sm-6">
+            <label for="name" class="label-color">Transaction Request NO.</label>
+            <input type="text" class="form-control form-cust" name="address" ng-model="formData.payment_request_id"  ng-readonly="true">
+        </div>
+    </div>
+</div>
+
+
+<div class="form-group row" style="padding:6px"; >
+    <div class="col-sm-6" ng-show="disableForm">
+        <button  class="btn btn-danger btn-info" ng-click="editForm()" style="width:30%">
+            Edit<span class="glyphicon glyphicon-edit"></span>
+        </button>
+    </div>
+    <div class="col-sm-6" ng-show="disableForm" style="text-align:right">
+       <button  class="btn btn-warning"  ng-click="submitPayment('Make')" style="width:37%" ng-show="formData.transaction_ref=='PENDING'">
+        Make Payment  <span class="glyphicon glyphicon-circle-arrow-right"></span>
+    </button>
+    <button ng-click="NextView()" class="btn btn-success" style="width:37%">
+        Passenger Info <span class="glyphicon glyphicon-circle-arrow-right"></span>
+    </button>
+</div>
+
+
+<div class="col-sm-6" ng-show="!disableForm">
+    <button type="submit"  ng-disabled="my_form.contact_name.$invalid || my_form.contact_number.$invalid" class="btn btn-danger btn-info"  ng-click="updateUserInfo()" style="width:30%">
+        Submit <span class="glyphicon glyphicon-save"></span>
+    </button>
+</div>
+<div class="col-sm-6" ng-show="!disableForm" style="text-align:right">
+    <button class="btn btn-warning  btn-info" ng-click="cancel()" style="width:30%">
+        cancel <span class="glyphicon glyphicon-cancel"></span>
+    </button>
+</div>
+</div>
+</div>
+</form>

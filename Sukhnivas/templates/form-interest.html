@@ -1,0 +1,92 @@
+<!-- form-interests.html -->
+    <div class="row">
+        <div class="col-sm-6">
+<div class="form-group" >
+    <label for="name" class="label-color" style="color:green">Name:{{formData.contact_name}}</label>
+</div>
+</div>
+<div class="col-sm-6">
+<div class="form-group" style="text-align:right">
+    <label for="mobile" class="label-color" style="color:green" >Email:{{formData.contact_email}}</label>
+</div>
+</div>
+</div>
+
+<div ng-show="!emptyData"  ng-include="'templates/passengersDetails.html'"></div>
+<div ng-show="emptyData">
+    <div ng-repeat="test in passengerForm" >
+        <table class="table" >
+            <thead>
+              <tr>
+                <th style="text-align:center" class="label-color">S.No</th>
+                <th  style="text-align:center" class="label-color">Firstname</th>
+                <th style="text-align:center" class="label-color">Abhyasi ID</th>
+                <th style="text-align:center" class="label-color">Age</th>
+                <th style="text-align:center" class="label-color">M/F</th>
+            </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="label-color">{{$index}}</td>
+            <td><input style="height:36px;color:black;text-align:center" class="form-cust" type="text" ng-model="test.name" name="name"></td>
+            <td><input style="height:36px;color:black;text-align:center"  class="form-cust" type="text" ng-model="test.abhyasi_id" ></td>
+            <td><input  style="height:36px;color:black;text-align:center"type="number" class="form-cust" ng-model="test.age"></td>
+            <td>
+                <select class="dropdown form-control  form-cust" style="height:36px;" ng-model="test.gender">
+                    <option value="">Plaese select</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+            </td>
+        </tr>
+    </tbody>
+    
+</table>
+
+<table class="table" style="margin-left:33px">
+    <thead>
+      <tr>
+        <th></th>
+        <th class="label-color">Arrival Date</th>
+        <th class="label-color"> Departure Date</th>
+        <th class="label-color">Dorm Type</th>
+        <th class="label-color">Amount</th>
+        <th class="label-color">Special Needs</th>
+    </tr>
+</thead>
+<tbody>
+  <tr>
+    <td></td>
+    <td> 
+        <select id="arrivalDate1" name="arrivalDate1" class="dropdown  form-cust form-control" required="" ng-model="test.arrival"> 
+            <option value="">Select</option><option value="2016-02-09">FB-09</option>
+            <option value="2016-02-10">FEB-10</option>
+             <option value="2016-02-11">FEB-11</option>
+               </select></td>
+            <td> <select id="departureDate1" name="departureDate1" class="dropdown form-cust form-control" ng-model="test.departure"> <option value="">Select</option> <option value="2016-02-13">FEB-13</option><option value="2016-02-14">FEB-14</option></select></td>
+            <td> <select id="dom1" name="dom1" class="dropdown form-cust form-control" ng-model="test.dorm_type"  required=""> <option value="">Select</option> <option value="AC">AC</option><option value="NonAc">Non AC</option><option id="sharedID1" value="Shared">Shared-Child</option></select></td>
+            <td ng-if="test.dorm_type=='AC'"> <input type="text" id="amount1" name="amount1" class="form-control" readonly="" value="9000" style="width:80px;background-color:beige"> </td>
+             <td ng-if="test.dorm_type=='NonAc'"> <input type="text" id="amount1" name="amount1" class="form-control" readonly="" value="4500" style="width:80px;background-color:beige" > </td>
+             <td ng-if="test.dorm_type=='Shared'"> <input type="text" id="amount1" name="amount1" class="form-control" readonly="" value="0" style="width:80px;background-color:beige" > </td>
+           
+            <td ng-if="test.dorm_type==undefined"> <input type="text" id="amount1" name="amount1" class="form-control" readonly="" value="0" style="width:80px;background-color:beige" > </td>
+            <td nowrap="" class="label-color"> <input type="checkbox"  name="specialNeeds1[]" value="Close to Bath needed" ng-model="test.special_needs"> Close to Bath needed <br><input type="checkbox"   ng-model="test.d1"> Cannot walk long distance</td> 
+        </tr>
+    </tbody>
+</table>
+<hr></hr>
+</div>
+
+ <div class="col-sm-6"  style="text-align:right">
+         <button ng-click="add()" class="btn btn-warning  btn-info" style="width:40%;float:left">
+        ADD <span class="glyphicon glyphicon-plus"></span>
+    </button>
+   <!--  <button class="btn btn-warning  btn-info" style="color:black;">Total Amount:RS. {{totalAmount}}</button> -->
+    </div>
+<div class="col-sm-6">
+        <button class="btn btn-success btn-info"  ng-click="submitPassengerDetails()" style="width:40%;float:right">
+            Submit <span class="glyphicon glyphicon-save"></span>
+        </button>
+    </div>
+   
+</div>

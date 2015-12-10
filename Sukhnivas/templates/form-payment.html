@@ -1,0 +1,82 @@
+<!-- form-payment.html -->
+
+    <!-- <span class="glyphicon glyphicon-heart"></span>
+     -->
+     <form name="payment">
+     <div class="form-group">
+    <label for="email" class="label-color">Amount<i class="fa fa-inr"></i></label>
+    <input type="Number" class="form-control form-cust" name="email" ng-model="totalAmount" ng-readonly="true">
+
+</div>
+<div class="form-group">
+    <label for="name"class="label-color">Payment Mode</label>
+    <select class="select-input dropdown form-control form-cust" ng-model="PaymentDetals.payment_mode">
+        <option value="">-- Please select your Payment Mode --</option>
+        <option value="DD">DD</option>
+        <option value="NEFT">NEFT</option>
+        <option Value="PG" ng-show="formData.country=='India'">PG</option> 
+    </select>
+</div>
+
+<div class="form-group" ng-show="PaymentDetals.payment_mode=='DD'">
+    <label for="email" class="label-color">DD Number</label>
+    <input type="text" class="form-control form-cust" placeholder="enter your DD Number" name="transaction_ref" ng-model="PaymentDetals.transaction_ref" ng-required="true">
+<span class="help-block" ng-show="payment.transaction_ref.$dirty && payment.transaction_ref.$invalid">
+          <span style="color:red;">
+          DD Number Must Be filled
+        </span> 
+ </span>
+</div>
+<!-- <span  ng-show="payment_form.transaction_ref.$dirty && payment_form.transaction_ref.$invalid">
+
+      <span  style="color:red" ng-show="payment_form.transaction_ref.$error.required" class="help-block">address is required.</span>
+    </span> -->
+
+    
+
+<div class="form-group" ng-show="PaymentDetals.payment_mode=='NEFT'">
+    <label for="email" class="label-color">UTR Number</label>
+    <input type="text" class="form-control form-cust" placeholder="enter your utr number" name="DD" ng-model="PaymentDetals.transaction_ref">
+    <span class="help-block" ng-show="payment.transaction_ref.$dirty && payment.transaction_ref.$invalid">
+          <span style="color:red;">
+          UTR Number Must Be filled
+        </span> 
+ </span>
+</div>
+
+
+
+<div class="form-group" ng-show="(PaymentDetals.payment_mode=='DD' || PaymentDetals.payment_mode=='NEFT')">
+    <label for="email" class="label-color">Bank Name</label>
+    <input type="text" class="form-control form-cust" placeholder="enter your bank name" name="bank_name" ng-model="PaymentDetals.bank_name" ng-required="true">
+    <span class="help-block" ng-show="payment.bank_name.$dirty && payment.bank_name.$invalid">
+          <span style="color:red;">
+          Bank Name Must Be filled
+        </span> 
+ </span>
+</div>
+<div class="form-group row" style="padding:6px"; ng-show="(PaymentDetals.payment_mode=='DD' || PaymentDetals.payment_mode=='NEFT')">
+<div class="col-xs-6 col-xs-offset-3">
+    <a ui-sref="form.payment" ng-click="submitPayment('Submit')"  class="btn btn-danger btn-block btn-info"  ng-disabled="payment.transaction_ref.$invalid || payment.bank_name.$invalid">
+      Submit <span class="glyphicon glyphicon-circle-arrow-right"></span>
+    </a> 
+    <!-- <button type="submit" class="btn btn-danger btn-info">Submit
+         <span class="glyphicon glyphicon-circle-arrow-right"></span>
+         </button> -->
+
+</div>
+</div>
+
+<div class="form-group row" style="padding:6px"; ng-show="PaymentDetals.payment_mode=='PG'">
+<div class="col-xs-6 col-xs-offset-3">
+    <a ui-sref="form.payment" ng-click="submitPayment('Make')"  class="btn btn-warning btn-block btn-info">
+      Make Payment <span class="glyphicon glyphicon-circle-arrow-right"></span>
+    </a> 
+    <!-- <button type="submit" class="btn btn-danger btn-info">Submit
+         <span class="glyphicon glyphicon-circle-arrow-right"></span>
+         </button> -->
+
+</div>
+</div>
+</form>
+        
