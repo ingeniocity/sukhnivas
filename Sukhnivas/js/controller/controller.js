@@ -1,5 +1,4 @@
-// our controller for the form
-// =============================================================================
+
 formApp.controller('formController', function($scope,$Country,$http,$state) {
 	$scope.count=1;
   $scope.disableForm="true";
@@ -14,7 +13,6 @@ formApp.controller('formController', function($scope,$Country,$http,$state) {
   $scope.PaymentDetals={};
   $scope.searchEmail='';
   var api_url="http://api.sukhnivas.in:1107/";
-         // function to process the form
          $scope.procescheckStatussForm = function() {
           alert('awesome!');
         };
@@ -32,7 +30,6 @@ formApp.controller('formController', function($scope,$Country,$http,$state) {
     /*if($scope.formData.email==null || $scope.formData.email==undefined){
         $state.go('form.profile');
       }*/
-      <!--************** get Country From service ************************-->
       $scope.country1=$Country.getCountry();
 
       $scope.add=function(){
@@ -40,7 +37,6 @@ formApp.controller('formController', function($scope,$Country,$http,$state) {
      }
 
 
-     <!--************** check Email with backend ************************-->
      $scope.checkEmail=function(){
       if($scope.searchEmail!=''){
        $scope.formData.contact_email=$scope.searchEmail;
@@ -74,7 +70,6 @@ formApp.controller('formController', function($scope,$Country,$http,$state) {
 
 
 
-<!--************** save User Info ************************-->
 $scope.submitUserDetail=function(){
   $scope.isLoading=true;
   console.log($scope.formData);
@@ -93,13 +88,11 @@ $scope.submitUserDetail=function(){
 
 }
 
-<!--********************** Edit FORM ************************-->
 $scope.editForm=function(){
   $scope.disableForm=false;
 }
 
 
-<!--************** save updated User Info ************************-->
 $scope.updateUserInfo= function(){
   $scope.isLoading=true;
   if(checkStatus=='initial'){
